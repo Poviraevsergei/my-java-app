@@ -7,4 +7,8 @@ public class Person {
     public Person() {
         System.out.println("This is Person constructor!");
     }
+
+    public Person(int age) {
+        this.age = age;
+    }
 }
