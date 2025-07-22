@@ -1,4 +1,4 @@
-package com.tms;
+package lesson11.hometask;
 
 import java.util.Arrays;
 import java.util.Comparator;
