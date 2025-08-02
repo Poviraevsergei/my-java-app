@@ -2,6 +2,8 @@ package lesson15;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Vector;
 
 public class MainArrayList {
     public static void main(String[] args) {
@@ -11,6 +13,7 @@ public class MainArrayList {
         //Быстрый поиск по индексу O(1)
         //Медленная вставка/удаление O(n)
         ArrayList<String> list = new ArrayList<>();
+
         System.out.println(list.indexOf("Алексей"));
         list.add("Алексей");
         list.add("Сергей");
