@@ -1,12 +1,12 @@
 package lesson15.generic;
 
-import lesson14.Cat;
-import lesson9.task1.Dog;
-
 public class MainGeneric {
     public static void main(String[] args) throws NoSuchFieldException {
-       AnimalGeneric<String> catZoo = new AnimalGeneric<>();
+        Integer[] arr = new Integer[2];
+        arr[0] = 10;
+        arr[1] = 20;
 
-
+        AnimalGeneric<String> catZoo = new AnimalGeneric<>();
+        catZoo.printArray(arr);
     }
 }
