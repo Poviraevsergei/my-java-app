@@ -3,6 +3,8 @@ package lesson17;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+import java.util.function.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -48,6 +50,33 @@ public class Main {
          */
         List<Integer> inputNumbers = Arrays.asList(1, 2, 3);
         System.out.println(convertAll(inputNumbers, number -> "Число: " + number));
+
+        //Функциональные интерфейсы в JDK:
+        //1. Predicate - возвращает boolean принимает 1 параметр
+        Predicate<String> isMoreThan2Letters = line -> line.length() > 2;
+        System.out.println(isMoreThan2Letters.test("Hello"));
+
+        //2. Consumer - void, принимает 1 параметр
+        Consumer<Integer> printNumber = number -> System.out.println(number);
+        printNumber.accept(36);
+
+        //3. Supplier - возвращает значение, на вход ничего не передаем.
+        Supplier<String> random = () -> {
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextLine();
+        };
+
+        //4. Function<T,E> - принимает параметр одного типа, возвращает другого типа;
+        Function<String, Double> fromStringToDoundle = line -> Double.parseDouble(line);
+        System.out.println(fromStringToDoundle.apply("1.1"));
+
+        //5. UnaryOperator - принимает один параметр, возвращает один параметр(одинакового типа)
+        UnaryOperator<Integer> unary = (value) -> value + value;
+        System.out.println(unary.apply(4));
+
+        //6. BinaryOperator - принимает один параметр, возвращает один параметр(одинакового типа)
+        BinaryOperator<Integer> binary = (x, y) -> x + y;
+        System.out.println(binary.apply(4, 10));
     }
 
     public static List<String> convertAll(List<Integer> input, IntToStringConverter converter) {
@@ -69,9 +98,7 @@ public class Main {
         }
         return resultList;
     }
-
 }
-
 
 /**
  * TODO: Задача перед Stream API!
