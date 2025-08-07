@@ -1,11 +1,18 @@
 package lesson17;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Formatter;
-import java.util.Scanner;
+import java.util.*;
 
 public class TaskDate {
+
+    private static final Set<LocalDate> HOLIDAYS = Set.of(
+            LocalDate.of(2026, 1, 1),
+            LocalDate.of(2026, 1, 7),
+            LocalDate.of(2026, 5, 9)
+    );
+
     public static void main(String[] args) {
         /*
         Напиши Java-программу, которая:
@@ -21,15 +28,30 @@ public class TaskDate {
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
+        ArrayList<LocalDate> holidayVocation = new ArrayList<>();
+        int workDays = 0;
         LocalDate startDate = LocalDate.parse(input, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
-        //TODO:before logic
-
         Integer inputDays = scanner.nextInt();
-        LocalDate endDate =startDate.plusDays(inputDays);
+        LocalDate endDate = startDate.plusDays(inputDays - 1);
+
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+            boolean isHoliday = HOLIDAYS.contains(date);
+            if (isHoliday) {
+                holidayVocation.add(date);
+            }
+
+            DayOfWeek day = date.getDayOfWeek();
+            boolean isWeekend = day.equals(DayOfWeek.SUNDAY) || day.equals(DayOfWeek.SATURDAY);
+
+            if (!isHoliday && !isWeekend) {
+                workDays++;
+            }
+        }
 
         System.out.println(startDate);
         System.out.println(endDate);
-        System.out.println(inputDays);
+        System.out.println("Рабочие дни: " + workDays);
+        System.out.println("Праздничные дни: " + holidayVocation);
     }
 }
