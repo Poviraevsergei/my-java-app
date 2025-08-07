@@ -32,7 +32,7 @@ public class TaskDate {
         int workDays = 0;
         LocalDate startDate = LocalDate.parse(input, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
-        Integer inputDays = scanner.nextInt();
+        int inputDays = scanner.nextInt();
         LocalDate endDate = startDate.plusDays(inputDays - 1);
 
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
