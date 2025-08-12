@@ -51,6 +51,18 @@ public class Main {
         List<Integer> inputNumbers = Arrays.asList(1, 2, 3);
         System.out.println(convertAll(inputNumbers, number -> "Число: " + number));
 
+        /**
+         * Создайте функциональный интерфейс StringCondition с методом boolean test(String s).
+         * В Main реализуйте метод public static int count(List<String> input, StringCondition condition)
+         * 1. Посчитать количество слов содержащих букву 'a'
+         * 2. Посчитать кол-во слов написанных UpperCase
+         */
+        List<String> inputList = Arrays.asList("TMS", "JAVA", "Alohamora");
+        Predicate<String> countWordsContainsALetter = line -> line.contains("a");
+        Predicate<String> countUpperCaseWords = line -> line.matches("[A-Z]+");
+        System.out.println("Count: " + count(inputList, countUpperCaseWords));
+
+
         //Функциональные интерфейсы в JDK:
         //1. Predicate - возвращает boolean принимает 1 параметр
         Predicate<String> isMoreThan2Letters = line -> line.length() > 2;
@@ -98,12 +110,17 @@ public class Main {
         }
         return resultList;
     }
+
+    public static int count(List<String> input, Predicate<String> predicate) {
+        List<String> resultList = new ArrayList<>();
+
+        for (String element : input) {
+            if (predicate.test(element)) {
+                resultList.add(element);
+            }
+        }
+        return resultList.size();
+    }
 }
 
-/**
- * TODO: Задача перед Stream API!
- * Создайте функциональный интерфейс StringCondition с методом boolean test(String s).
- * В Main реализуйте метод public static int count(List<String> input, StringCondition condition)
- * 1. Посчитать количество слов содержащих букву 'a'
- * 2. Посчитать кол-во слов написанных UpperCase
- */
+
