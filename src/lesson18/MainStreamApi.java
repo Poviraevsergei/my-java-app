@@ -34,9 +34,9 @@ public class MainStreamApi {
 
         employees.stream()
                 .filter(e -> "Security".equals(e.getDepartment()))
-                .filter(e -> e.getSalary() > 100_000)
-                .map(e -> e.getName());
-
+                .parallel()
+                .map(Employee::getName)
+                .forEach(MainStreamApi::printMe);
         //.forEach(name -> printMe(name));
         //.max(Comparator.comparing(name -> name.length()));
         //.min(Comparator.comparing(name -> name.length()));
@@ -51,8 +51,6 @@ public class MainStreamApi {
         //.findAny();
         //.findFirst();
         //System.out.println(resultNamesFromStream);
-
-        //TODO: parallel
     }
 
     public static void printMe(String line) {
