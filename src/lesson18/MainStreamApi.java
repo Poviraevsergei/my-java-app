@@ -51,6 +51,43 @@ public class MainStreamApi {
         //.findAny();
         //.findFirst();
         //System.out.println(resultNamesFromStream);
+
+        /**
+         *
+         * 2. Сумма чисел, кратных 3 или 5
+         * Дан список List<Integer> numbers. Найти сумму всех чисел, кратных 3 или 5.
+         */
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 3, 5);
+        int sum = numbers.stream()
+                .filter(num -> num % 3 == 0 || num % 5 == 0)
+                .reduce(Integer::sum).orElseThrow();
+        System.out.println(sum);
+
+        /**
+         * 3. Подсчёт количества уникальных слов
+         * Дан список строк List<String> lines. Нужно посчитать количество уникальных слов (без учёта регистра).
+         * Input:
+         * List<String> lines = List.of(
+         * "Stream API is powerful",
+         * "Java stream is powerful",
+         * "Powerful tools in Java"
+         * );
+         * <p>
+         * Output: 7 (stream, api, is, powerful, java, tools, in)Stream API задачи:
+         */
+        List<String> lines = List.of(
+                "Stream API is powerful",
+                "Java stream is powerful",
+                "Powerful tools in Java"
+        );
+
+        long resultCount = lines.stream()
+                .flatMap(line -> Arrays.stream(line.split("\\s+")))
+                .map(String::toLowerCase)
+                .distinct()
+                .count();
+
+        System.out.println(resultCount);
     }
 
     public static void printMe(String line) {
@@ -59,36 +96,3 @@ public class MainStreamApi {
 }
 
 
-/**
- * 2. Сумма чисел, кратных 3 или 5
- * Дан список List<Integer> numbers. Найти сумму всех чисел, кратных 3 или 5.
- * <p>
- * 3. Подсчёт количества уникальных слов
- * Дан список строк List<String> lines. Нужно посчитать количество уникальных слов (без учёта регистра).
- * Input:
- * List<String> lines = List.of(
- * "Stream API is powerful",
- * "Java stream is powerful",
- * "Powerful tools in Java"
- * );
- * <p>
- * Output: 7 (stream, api, is, powerful, java, tools, in)Stream API задачи:
- * 1. Фильтрация и преобразование списка сотрудников
- * Дан список сотрудников List<Employee> employees.
- * Нужно получить список имен сотрудников из отдела "Security", у которых зарплата выше 100_000.
- * Ожидаемый результат: List<String> — имена подходящих сотрудников.
- * <p>
- * 2. Сумма чисел, кратных 3 или 5
- * Дан список List<Integer> numbers. Найти сумму всех чисел, кратных 3 или 5.
- * <p>
- * 3. Подсчёт количества уникальных слов
- * Дан список строк List<String> lines. Нужно посчитать количество уникальных слов (без учёта регистра).
- * Input:
- * List<String> lines = List.of(
- * "Stream API is powerful",
- * "Java stream is powerful",
- * "Powerful tools in Java"
- * );
- * <p>
- * Output: 7 (stream, api, is, powerful, java, tools, in)
- */
