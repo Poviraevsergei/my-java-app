@@ -7,8 +7,10 @@ public class MyThread extends Thread {
     //Содержит логику которую должен выполнять этот поток
     @Override
     public void run() {
-        for (int i = 0; i < 5000; i++) {
-            ++Main.number;
+        for (int i = 0; i < 500000; i++) {
+            synchronized (Main.class){
+                Main.addOneToNumberVar();
+            }
         }
     }
 }
